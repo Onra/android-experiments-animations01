@@ -1,7 +1,6 @@
 package com.thesuitedowl.animations1;
 
 import android.app.Activity;
-import android.app.ActionBar;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.transition.ChangeBounds;
@@ -11,7 +10,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
+import android.widget.FrameLayout;
+import android.widget.GridLayout;
 
 public class MainActivity extends Activity {
 
@@ -54,6 +54,7 @@ public class MainActivity extends Activity {
     public static class PlaceholderFragment extends Fragment implements View.OnClickListener {
 
         private ViewGroup mLayout1;
+        private ViewGroup mLayout2;
 
         public PlaceholderFragment() {
         }
@@ -66,15 +67,43 @@ public class MainActivity extends Activity {
             mLayout1 = (ViewGroup) rootView.findViewById(R.id.layout_1);
             mLayout1.findViewById(R.id.item_1a).setOnClickListener(this);
             mLayout1.findViewById(R.id.item_1b).setOnClickListener(this);
+
+            mLayout2 = (ViewGroup) rootView.findViewById(R.id.layout_2);
+            mLayout2.findViewById(R.id.item_2a).setOnClickListener(this);
+            mLayout2.findViewById(R.id.item_2b).setOnClickListener(this);
+            mLayout2.findViewById(R.id.item_2c).setOnClickListener(this);
+
             return rootView;
         }
 
         @Override
         public void onClick(View v) {
-            int selected = mLayout1.indexOfChild(v);
-            TransitionManager.beginDelayedTransition(mLayout1, new ChangeBounds());
-            mLayout1.removeView(v);
-            mLayout1.addView(v, selected == 0 ? mLayout1.getChildCount() : 0);
+
+            if (v.getId() == R.id.item_1a || v.getId() == R.id.item_1b) {
+                int selected = mLayout1.indexOfChild(v);
+                TransitionManager.beginDelayedTransition(mLayout1, new ChangeBounds());
+                mLayout1.removeView(v);
+                mLayout1.addView(v, selected == 0 ? mLayout1.getChildCount() : 0);
+            } else {
+                int selected = mLayout2.indexOfChild(v);
+                if (selected > 0) {
+                    View cur = mLayout2.getChildAt(0);
+                    int currentId = cur.getId();
+                    int selectedId = v.getId();
+                    TransitionManager.beginDelayedTransition(mLayout2, new ChangeBounds());
+                    mLayout2.removeView(v);
+                    mLayout2.addView(v, 0);
+                    GridLayout.LayoutParams params = (GridLayout.LayoutParams)cur.getLayoutParams();
+                    cur.setLayoutParams(v.getLayoutParams());
+                    v.setLayoutParams(params);
+                    if(currentId == R.id.item_2c ||
+                            (currentId == R.id.item_2b &&
+                                    selectedId == R.id.item_2c)) {
+                        mLayout2.removeView(cur);
+                        mLayout2.addView(cur);
+                    }
+                }
+            }
         }
     }
 

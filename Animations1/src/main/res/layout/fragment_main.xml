@@ -1,33 +1,102 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layout_1"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:layout_weight="1"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="@dimen/margin">
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
-<TextView
-        android:id="@+id/item_1a"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="@dimen/item_height"
-        android:background="@color/pomegranate"
-        android:text="Item 1a"
-        android:gravity="center"
-        android:textAppearance="@style/Text"
-        android:layout_margin="@dimen/margin"/>
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/layout_1">
 
-<TextView
-        android:id="@+id/item_1b"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="@dimen/item_height"
-        android:background="@color/nephritis"
-        android:text="Item 1b"
-        android:gravity="center"
-        android:textAppearance="@style/Text"
-        android:layout_margin="@dimen/margin"/>
+        <TextView
+                android:id="@+id/item_1a"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/item_height"
+                android:background="@color/pomegranate"
+                android:text="Item 1a"
+                android:gravity="center"
+                android:textAppearance="@style/Text"
+                android:layout_margin="@dimen/margin"/>
 
+        <TextView
+                android:id="@+id/item_1b"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/item_height"
+                android:background="@color/nephritis"
+                android:text="Item 1b"
+                android:gravity="center"
+                android:textAppearance="@style/Text"
+                android:layout_margin="@dimen/margin"/>
+
+    </LinearLayout>
+
+    <GridLayout
+            android:id="@+id/layout_2"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:columnCount="2"
+            android:padding="@dimen/margin">
+
+        <FrameLayout
+                android:id="@+id/item_2a"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/item_height"
+                android:minWidth="@dimen/width"
+                android:background="@color/pomegranate"
+                android:layout_columnSpan="2"
+                android:layout_margin="@dimen/margin"
+                android:layout_marginTop="50dp">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Item 2a"
+                    android:layout_gravity="center"
+                    android:textAppearance="@style/Text"/>
+
+        </FrameLayout>
+
+        <FrameLayout
+                android:id="@+id/item_2b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/item_height"
+                android:minWidth="@dimen/width"
+                android:background="@color/nephritis"
+                android:layout_margin="@dimen/margin">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Item 2b"
+                    android:layout_gravity="center"
+                    android:textAppearance="@style/Text"/>
+
+        </FrameLayout>
+
+
+        <FrameLayout
+                android:id="@+id/item_2c"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/item_height"
+                android:minWidth="@dimen/width"
+                android:background="@color/peterRiver"
+                android:layout_margin="@dimen/margin">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Item 2c"
+                    android:layout_gravity="center"
+                    android:textAppearance="@style/Text"/>
+
+        </FrameLayout>
+    </GridLayout>
 </LinearLayout>
