@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.transition.ChangeBounds;
+import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -61,15 +63,16 @@ public class MainActivity extends Activity {
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
-//            mLayout1 = (ViewGroup) rootView.findViewById(R.id.layout_1);
-//            mLayout1.findViewById(R.id.item_1a).setOnClickListener(this);
-//            mLayout1.findViewById(R.id.item_1b).setOnClickListener(this);
+            mLayout1 = (ViewGroup) rootView.findViewById(R.id.layout_1);
+            mLayout1.findViewById(R.id.item_1a).setOnClickListener(this);
+            mLayout1.findViewById(R.id.item_1b).setOnClickListener(this);
             return rootView;
         }
 
         @Override
         public void onClick(View v) {
             int selected = mLayout1.indexOfChild(v);
+            TransitionManager.beginDelayedTransition(mLayout1, new ChangeBounds());
             mLayout1.removeView(v);
             mLayout1.addView(v, selected == 0 ? mLayout1.getChildCount() : 0);
         }
